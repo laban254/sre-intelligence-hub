@@ -1,0 +1,14 @@
+# Git configuration for notebooks
+
+# Use Git LFS for large notebook outputs
+*.png filter=git-lfs diff=git-lfs merge=git-lfs -text
+*.jpg filter=git-lfs diff=git-lfs merge=git-lfs -text
+*.jpeg filter=git-lfs diff=git-lfs merge=git-lfs -text
+*.gif filter=git-lfs diff=git-lfs merge=git-lfs -text
+*.pdf filter=git-lfs diff=git-lfs merge=git-lfs -text
+
+# Track small images in Git, not LFS
+*.png filter= -lfs
+
+# Jupyter notebook diff configuration
+*.ipynb diff=ipynb
