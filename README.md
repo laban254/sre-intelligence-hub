@@ -192,7 +192,7 @@ data-science-and-ml-exercises/
 
 ---
 
-## � License
+## 📝 License
 
 Educational use. See individual notebooks for dataset licenses.
 

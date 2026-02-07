@@ -69,7 +69,6 @@ import pandas as pd
 - Include markdown explanations between code cells
 - Add comments in code for complex logic
 - Reference common pitfalls in callout boxes
-```
 
 ---
 
