@@ -1,8 +1,8 @@
-# DS/ML Learning Hub for SREs & DevOps Engineers
+# SRE Intelligence Hub
 
 Learn the machine learning skills needed to build modern infrastructure intelligence tools: anomaly detection, log clustering, time series forecasting, and production deployment — all applied to real infrastructure data.
 
-[![CI Status](https://github.com/yourusername/data-science-and-ml-exercises/actions/workflows/ci.yml/badge.svg)](#)
+[![CI Status](https://github.com/laban254/sre-intelligence-hub/actions/workflows/ci.yml/badge.svg)](#)
 [![Python Version](https://img.shields.io/badge/Python-3.10+-blue)](#)
 
 ---
