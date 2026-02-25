@@ -176,10 +176,11 @@ def load_sklearn_dataset(name: str, mode: str = "quick") -> Dict[str, Any]:
 def download_external_dataset(name: str, url: str, mode: str = "quick") -> Dict[str, Any]:
     """
     Download an external dataset with hash verification.
+    Supports HTTP/HTTPS, AWS S3 (s3://), and Hugging Face Datasets (hf://).
     
     Args:
         name: Dataset name
-        url: Download URL
+        url: Download URL (http, s3, or hf protocol)
         mode: "quick" or "full"
     
     Returns:
@@ -197,21 +198,50 @@ def download_external_dataset(name: str, url: str, mode: str = "quick") -> Dict[
             print(f"  {name}: Already cached and verified")
             return {"status": "cached", "path": str(filepath)}
     
-    print(f"Downloading {name}...")
+    print(f"Downloading {name} from {url}...")
     start_time = time.time()
     
-    response = requests.get(url, timeout=60)
-    response.raise_for_status()
-    
-    content = response.content
+    # Handle different protocols
+    if url.startswith("s3://"):
+        try:
+            import boto3
+            # Parse s3://bucket/key
+            parts = url.replace("s3://", "").split("/", 1)
+            bucket, key = parts[0], parts[1]
+            s3 = boto3.client('s3')
+            response = s3.get_object(Bucket=bucket, Key=key)
+            content = response['Body'].read()
+        except ImportError:
+            raise ImportError("boto3 is required for s3:// URLs. Run: pip install boto3")
+    elif url.startswith("hf://"):
+        try:
+            from huggingface_hub import hf_hub_download
+            # Parse hf://repo_id/filename
+            parts = url.replace("hf://", "").split("/", 1)
+            repo_id, filename = parts[0], parts[1]
+            # Download to cache, then read
+            local_path = hf_hub_download(repo_id=repo_id, filename=filename, repo_type="dataset")
+            with open(local_path, "rb") as f:
+                content = f.read()
+        except ImportError:
+            raise ImportError("huggingface_hub is required for hf:// URLs. Run: pip install huggingface_hub")
+    else:
+        # Default HTTP/HTTPS fallback
+        response = requests.get(url, timeout=60)
+        response.raise_for_status()
+        content = response.content
+        
     file_hash = compute_hash(content)
     
-    # For quick mode, take a subset
+    # For quick mode, take a subset (assuming CSV-like text data for quick mode)
     if mode == "quick":
-        lines = content.decode().split('\n')
-        lines = lines[:101]  # header + 100 rows
-        content = '\n'.join(lines).encode()
-        file_hash = compute_hash(content)
+        try:
+            lines = content.decode().split('\n')
+            lines = lines[:101]  # header + 100 rows
+            content = '\n'.join(lines).encode()
+            file_hash = compute_hash(content)
+        except UnicodeDecodeError:
+            print(f"  WARNING: Could not text-decode {name} for quick mode. Using full file.")
     
     # Verify hash
     if expected_hash and file_hash != expected_hash:

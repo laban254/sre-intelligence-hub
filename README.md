@@ -1,203 +1,91 @@
-# Data Science & Machine Learning Learning Hub
+# DS/ML Learning Hub for SREs & DevOps Engineers
 
-A structured, reproducible, and engaging learning path for data science and ML—from foundations to deep learning—with clear goals, exercises, and quality gates.
+Learn the machine learning skills needed to build modern infrastructure intelligence tools: anomaly detection, log clustering, time series forecasting, and production deployment — all applied to real infrastructure data.
 
-[![CI Status](https://img.shields.io/badge/CI-pending-yellow)](#)
+[![CI Status](https://github.com/yourusername/data-science-and-ml-exercises/actions/workflows/ci.yml/badge.svg)](#)
 [![Python Version](https://img.shields.io/badge/Python-3.10+-blue)](#)
-[![Notebooks Tested](https://img.shields.io/badge/Notebooks-TODO-orange)](#)
 
 ---
 
-## 🚀 Quick Start
+## 🎯 Outcomes
 
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/data-science-and-ml-exercises.git
-cd data-science-and-ml-exercises
+After completing this track, you will be able to:
+1.  **Detect Anomalies:** Automatically flag unusual behavior in Prometheus-style metrics using Isolation Forests and Autoencoders.
+2.  **Cluster Error Logs:** Parse unstructured system logs and use NLP (TF-IDF) + K-Means to automatically group new error patterns.
+3.  **Forecast Infrastructure Load:** Predict future CPU/Memory constraints using time-series forecasting (LSTMs).
+4.  **Deploy ML to Production:** Take a model from a Jupyter Notebook and deploy it as a FastAPI endpoint inside a Docker container.
 
-# Install dependencies
-pip install -r requirements.txt
+## 👥 Who This Is For
 
-# Run a notebook
-jupyter notebook numpy/numpy.ipynb
-```
+This repository is built specifically for **Site Reliability Engineers (SREs), DevOps Engineers, and Platform Engineers** who want to understand modern AI/ML tooling. It strips away the generic "house price prediction" examples found in most data science tutorials and replaces them with real problems you face in production.
 
-## 📚 Learning Track Map
+### Why This Repository?
 
-```
-Foundations (Week 1-2)
-├── NumPy          → Array operations, broadcasting, linear algebra
-├── Pandas         → DataFrames, cleaning, joins, groupby
-
-Visualization (Week 2-3)
-├── Matplotlib     → Custom plots, styling, annotations
-└── Seaborn        → Statistical plots, faceting, colorblind-safe
-
-Machine Learning (Week 3-5)
-├── Scikit-learn   → Preprocessing, pipelines, supervised/unsupervised
-└── Model Evaluation → Cross-validation, metrics, grid search
-
-Deep Learning (Week 5-6)
-└── Keras          → Neural networks, CNNs, regularization
-
-Capstones (Week 7-8)
-└── End-to-end projects with rubrics
-```
+| Feature | Standard Data Science Courses | This Repository |
+| :--- | :--- | :--- |
+| **Primary Audience** | Aspiring Data Scientists | Software/Infrastructure Engineers |
+| **Datasets** | Synthetic or Generic (Titanic, Iris) | Real System Logs, Infrastructure Metrics |
+| **End Goal** | Training a static model | Deploying an API + Docker Container |
+| **Key Topics** | Pandas, Matplotlib, Scikit-Learn | Anomaly Detection, MLOps, LLM Fine-Tuning |
 
 ---
 
-## ⚡ Fast Track (6-8 hours)
+## 🗺️ The Learning Journey
 
-Complete the essentials to get started quickly:
+This curriculum is organized progressively. You don't need to finish it in one weekend; treat it as an evolving toolkit for your daily engineering tasks.
 
-| Topic | Notebook | Time | Key Concepts |
-|-------|----------|------|-------------|
-| NumPy | [`numpy/numpy.ipynb`](numpy/numpy.ipynb) | 1h | Arrays, broadcasting, indexing |
-| Pandas | [`pandas/Pandas.ipynb`](pandas/Pandas.ipynb) | 1.5h | DataFrames, cleaning, groupby |
-| Matplotlib | [`matplotlib/matplotlib.ipynb`](matplotlib/matplotlib.ipynb) | 1h | Plots, styling, subplots |
-| Seaborn | [`seaborn/seaborn.ipynb`](seaborn/seaborn.ipynb) | 1h | Statistical visualizations |
-| Scikit-learn | [`scikit-learn/supervised-learning-algorithms/classification.ipynb`](scikit-learn/supervised-learning-algorithms/classification.ipynb) | 1.5h | Classification, metrics |
-| Keras | [`keras/Basic_Keras_MNIST_Practice.ipynb`](keras/Basic_Keras_MNIST_Practice.ipynb) | 2h | Neural networks, MNIST |
+### `01_foundations/`
+*   **NumPy:** Arrays, broadcasting, and numerical performance.
+*   **Pandas:** Data manipulation, cleaning messy data, and complex aggregations.
+*   **Distributed Data:** Using **PySpark** on a local cluster to group logs that won't fit entirely in memory.
 
----
+### `02_visualization/`
+*   **Matplotlib & Seaborn:** Creating operational dashboards and visualizing statistical anomalies.
 
-## 🚀 Full Track (20-30 hours)
+### `03_machine_learning/`
+*   **Scikit-learn:** Preprocessing, classification, regression, and clustering algorithms.
 
-Complete all topics for a comprehensive education:
+### `04_deep_learning/`
+*   **Keras:** Historical neural network applications.
+*   **PyTorch:** Modern industrial implementations focusing on Time Series prediction (LSTMs) for infrastructure forecasting.
 
-### Foundations (8-10 hours)
-- [`numpy/numpy.ipynb`](numpy/numpy.ipynb) - Arrays, broadcasting, gotchas
-- [`pandas/Pandas.ipynb`](pandas/Pandas.ipynb) - DataFrames, joins, missing data
+### `05_sre_applications/`
+*   **Anomaly Detection:** Finding the needle in the haystack of Prometheus metrics.
+*   **Log Intelligence:** Grouping millions of log lines into actionable categories using K-Means and TF-IDF.
+*   **MLOps Tracking:** Wrapping Scikit-Learn training in **MLflow** to track metrics and save model artifacts inside a local SQLite database.
+*   **Model Monitoring:** Utilizing **Kolmogorov-Smirnov (KS) tests** to detect data drift (statistical shifts) in your infrastructure metrics over time.
+*   **LLM Fine-Tuning:** Tailoring small LLMs (like Llama 3) via LoRA Adapters to understand your specific system architecture.
 
-### Visualization (3-4 hours)
-- [`matplotlib/matplotlib.ipynb`](matplotlib/matplotlib.ipynb) - House style, annotations
-- [`seaborn/seaborn.ipynb`](seaborn/seaborn.ipynb) - Statistical plots, faceting
-
-### Machine Learning (8-10 hours)
-- [`scikit-learn/preprocessing/`](scikit-learn/preprocessing/) - Scaling, encoding, imputation
-- [`scikit-learn/supervised-learning-algorithms/`](scikit-learn/supervised-learning-algorithms/) - Classification, regression
-- [`scikit-learn/unsupervised-learning-algorithms/`](scikit-learn/unsupervised-learning-algorithms/) - Clustering, dimensionality reduction
-- [`scikit-learn/model-evaluation-and-selection/`](scikit-learn/model-evaluation-and-selection/) - Cross-validation, metrics, grid search
-- [`scikit-learn/model-pipelines/`](scikit-learn/model-pipelines/) - Pipeline patterns
-- [`scikit-learn/ensemble-methods/`](scikit-learn/ensemble-methods/) - Bagging, boosting
-
-### Deep Learning (3-4 hours)
-- [`keras/Basic_Keras_MNIST_Practice.ipynb`](keras/Basic_Keras_MNIST_Practice.ipynb) - MLP, CNN, regularization
-
----
-
-## 📋 Prerequisites
-
-- **Python 3.10+** fundamentals
-- Basic statistics and linear algebra
-- No prior ML experience required
+### `06_capstones/` (Upcoming)
+*   **Predictive Maintenance:** End-to-end XGBoost model with SHAP explainability and CLI tool deployment.
 
 ---
 
 ## 🛠️ Installation
 
-### Option 1: Unified Environment (recommended)
+**Unified Environment (recommended)**
 ```bash
 pip install -r requirements.txt
 ```
 
-### Option 2: Per-topic Installation
-Install only what you need:
+**Per-topic Installation**
+Install only what you need (e.g., just the foundations):
 ```bash
-pip install -r numpy/requirements.txt    # NumPy track
-pip install -r pandas/requirements.txt     # Pandas track
-# ... and so on
-```
-
-### Cloud Options
-- **Google Colab**: Open notebooks directly (Keras notebooks have Colab badges)
-- **Kaggle**: Notebooks available for fast-track
-
----
-
-## ❓ FAQ
-
-**Q: What hardware do I need?**
-A: Fast-track runs on CPU (15-30 min). Full track benefits from GPU for Keras notebooks.
-
-**Q: How long does the fast track take?**
-A: 6-8 hours of hands-on practice. Plan for 2-3x that time for experimentation.
-
-**Q: How do I run the notebooks?**
-A: 
-```bash
-jupyter notebook <notebook>.ipynb
-# or
-jupyter lab <notebook>.ipynb
-```
-
-**Q: Where do I get the data?**
-A: Most notebooks use sklearn's `make_*` functions for synthetic data. Real datasets are loaded from sklearn's built-in datasets.
-
-**Q: Can I contribute?**
-A: Yes! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
----
-
-## 📊 Notebook Structure
-
-Each notebook follows this template:
-
-```markdown
-# Title
-## Objectives
-- What you'll learn
-## Dataset
-- Source and loading
-## Expected Outcome
-- What you'll produce
-## Challenge
-- Stretch goal
+pip install -r 01_foundations/numpy/requirements.txt
 ```
 
 ---
 
-## 📁 Repository Structure
+## 🧪 Quality & Reproducibility
 
-```
-data-science-and-ml-exercises/
-├── numpy/           # Array operations
-├── pandas/          # Data manipulation
-├── matplotlib/      # Visualization
-├── seaborn/         # Statistical visualization
-├── scikit-learn/    # Machine learning
-├── keras/           # Deep learning
-├── requirements.txt # Unified dependencies
-├── README.md        # This file
-└── CONTRIBUTING.md  # Contribution guidelines
-```
-
----
-
-## 🧪 Testing & Quality
-
-- **Smoke tests**: Run `jupyter nbconvert --to notebook --execute *.ipynb`
-- **Seeds**: Use `random_state=42` for reproducibility
-- **Outputs**: Clear stored outputs before committing
-
----
-
-## 👥 Community
-
-- **GitHub Discussions**: Ask questions, share solutions, suggest features
-- **Issues**: Report bugs, request clarity, propose features
-- **Contributions**: See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines
-
-**Enable Discussions**: Go to repo Settings → Features → Discussions
+*   **Smoke tests**: Automatically executed via GitHub Actions (`.github/workflows/ci.yml`) on every PR.
+*   **Format & Linting**: Enforced with `black` and `ruff`.
+*   **Data Fetching**: The `fetch_data.py` supports standard HTTP, AWS S3 (`s3://`), and Hugging Face (`hf://`) protocols with integrity verification hashes built-in.
+*   **Seeds**: Use `random_state=42` across all notebooks for deterministic results.
+*   **Clean Commits**: Output cells are cleared before committing to reduce noise.
 
 ---
 
 ## 📝 License
 
 Educational use. See individual notebooks for dataset licenses.
-
----
-
-## 🙏 Acknowledgments
-
-Built with NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn, and Keras/TensorFlow.
